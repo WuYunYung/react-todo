@@ -1,0 +1,17 @@
+.item{
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.item label{
+  flex-grow: 1;
+}
+
+.item button{
+  border: none;
+  background: #0000;
+  color:#f00;
+  text-shadow: 1px 1px 1px #ddd;
+  cursor: pointer;
+}
