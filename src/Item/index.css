@@ -1,11 +1,6 @@
-.item{
-  padding: 8px;
-  display: flex;
-  align-items: center;
-}
-
 .item label{
   flex-grow: 1;
+  user-select: none;
 }
 
 .item button{
