@@ -16,10 +16,19 @@ const Label = styled.label`
 
 const TextBtn = styled.button`
   border: none;
-  background: #0000;
-  color:#f00;
-  text-shadow: 1px 1px 1px #ddd;
+  border-radius: 50%;
+  background: #ddd;
   cursor: pointer;
+  width: 20px;
+  height: 20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  &:before {
+    content: "\\1F5D9";
+    line-height:8px;
+    font-size:8px;
+  }
 `
 
 export default class index extends Component {
@@ -47,7 +56,7 @@ export default class index extends Component {
           <input type="checkbox" />
           <span>XXXXXX</span>
         </Label>
-        {show ? <TextBtn>DELETE</TextBtn> : '' }
+        {show ? <TextBtn /> : '' }
       </Item>
     )
   }
