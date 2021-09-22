@@ -11,29 +11,16 @@ const StyleList = styled.ul`
 
 export default class List extends Component {
   render() {
+    const { todos, updateTodo, deleteTodo } = this.props
     return (
       <StyleList>
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
+        {todos.map(todo =>
+          <Item
+            key={todo.id}
+            {...todo}
+            updateTodo={updateTodo}
+            deleteTodo={deleteTodo}
+          />)}
       </StyleList>
     )
   }

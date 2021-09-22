@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const Item = styled.li`
-  padding: 8px;
+  padding: 16px;
   display: flex;
   align-items: center;
   user-select: none;
@@ -12,8 +12,7 @@ const Item = styled.li`
 `
 const Label = styled.label`
   flex-grow: 1;
-`;
-
+`
 const TextBtn = styled.button`
   border: none;
   border-radius: 50%;
@@ -37,7 +36,7 @@ export default class index extends Component {
     show: false
   }
 
-  handleMouse = (flag) => {
+  handleMouse = flag => {
     return () => {
       this.setState({
         show: flag
@@ -45,18 +44,30 @@ export default class index extends Component {
     }
   }
 
+  handleChange = e => {
+    const { checked } = e.target
+    const { updateTodo, id } = this.props
+    updateTodo(id, checked)
+  }
+
+  handleClick = () => {
+    const { deleteTodo, id } = this.props
+    deleteTodo(id)
+  }
+
   render() {
     const { show } = this.state
+    const { content } = this.props
     return (
       <Item
         onMouseEnter={this.handleMouse(true)}
         onMouseLeave={this.handleMouse(false)}
       >
         <Label>
-          <input type="checkbox" />
-          <span>XXXXXX</span>
+          <input type="checkbox" onChange={this.handleChange} />
+          <span>{content}</span>
         </Label>
-        {show ? <TextBtn /> : '' }
+        {show ? <TextBtn onClick={this.handleClick }/> : ''}
       </Item>
     )
   }
