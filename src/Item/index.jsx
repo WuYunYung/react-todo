@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Item = styled.li`
@@ -32,6 +33,12 @@ const TextBtn = styled.button`
 
 export default class index extends Component {
 
+  static propTypes = {
+    id: propTypes.string.isRequired,
+    updateTodo: propTypes.func.isRequired,
+    done: propTypes.bool.isRequired
+  }
+
   state = {
     show: false
   }
@@ -52,22 +59,23 @@ export default class index extends Component {
 
   handleClick = () => {
     const { deleteTodo, id } = this.props
+    if (!window.confirm('是否确认删除?')) return
     deleteTodo(id)
   }
 
   render() {
     const { show } = this.state
-    const { content } = this.props
+    const { content, done } = this.props
     return (
       <Item
         onMouseEnter={this.handleMouse(true)}
         onMouseLeave={this.handleMouse(false)}
       >
         <Label>
-          <input type="checkbox" onChange={this.handleChange} />
+          <input type="checkbox" onChange={this.handleChange} checked={done} />
           <span>{content}</span>
         </Label>
-        {show ? <TextBtn onClick={this.handleClick }/> : ''}
+        {show ? <TextBtn onClick={this.handleClick} /> : ''}
       </Item>
     )
   }

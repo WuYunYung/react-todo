@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import styled from 'styled-components'
 import Item from '../Item'
 
@@ -10,6 +11,13 @@ const StyleList = styled.ul`
 `
 
 export default class List extends Component {
+
+  static propTypes = {
+    todos: propTypes.array.isRequired,
+    updateTodo: propTypes.func.isRequired,
+    deleteTodo: propTypes.func.isRequired
+  }
+
   render() {
     const { todos, updateTodo, deleteTodo } = this.props
     return (

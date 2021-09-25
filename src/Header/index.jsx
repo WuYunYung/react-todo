@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import styled from 'styled-components'
 import { nanoid } from 'nanoid'
 
@@ -19,6 +20,10 @@ const StyledInput = styled.input`
 `
 
 export default class Header extends Component {
+
+  static propTypes = {
+    addTodo: propTypes.func.isRequired
+  }
 
   handleEnter = async e => {
     const { keyCode, target } = e

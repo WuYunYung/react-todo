@@ -35,18 +35,38 @@ export default class App extends Component {
     })
   }
 
+  deleteAllDoneTodo = () => {
+    this.setState({
+      todos: this.state.todos.filter(todo => !todo.done)
+    })
+  }
+
+  changeAllTodoStatus = (done) => {
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        return { ...todo, done }
+      })
+    })
+  }
+
   render() {
+    const { state, addTodo, updateTodo, deleteTodo } = this
+    const { todos } = state
     return (
       <div id="app">
-        <Header addTodo={this.addTodo} />
+        <Header addTodo={addTodo} />
         <main>
           <List
-            todos={this.state.todos}
-            updateTodo={this.updateTodo}
-            deleteTodo={this.deleteTodo}
+            todos={todos}
+            updateTodo={updateTodo}
+            deleteTodo={deleteTodo}
           />
         </main>
-        <Footer />
+        <Footer
+          todos={todos}
+          deleteAllDoneTodo={this.deleteAllDoneTodo}
+          changeAllTodoStatus={this.changeAllTodoStatus}
+        />
       </div>
     )
   }
