@@ -25,12 +25,12 @@ export default class Header extends Component {
     addTodo: propTypes.func.isRequired
   }
 
-  handleEnter = async e => {
+  handleEnter =  e => {
     const { keyCode, target } = e
     const { value } = target
     if (keyCode !== 13) return
     if (!value) return
-    await this.props.addTodo({
+     this.props.addTodo({
       id: nanoid(),
       content: value,
       done: false
@@ -41,7 +41,11 @@ export default class Header extends Component {
   render() {
     return (
       <StyledHeader className="header">
-        <StyledInput type="text" placeholder="请输入..." onKeyUp={this.handleEnter} />
+        <StyledInput
+          type="text"
+          placeholder="请输入..."
+          onKeyUp={this.handleEnter}
+        />
       </StyledHeader>
     )
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import './App.css'
 import Header from './Header'
 import List from './List'
@@ -53,21 +54,33 @@ export default class App extends Component {
     const { state, addTodo, updateTodo, deleteTodo } = this
     const { todos } = state
     return (
-      <div id="app">
-        <Header addTodo={addTodo} />
-        <main>
-          <List
+      <Router>
+        <div id="app">
+          <Header addTodo={addTodo} />
+          <main>
+            <nav>
+              <Link to="/home">Home</Link>
+              <Link to="/about">About</Link>
+            </nav>
+            <div>
+              <Switch>
+                <Route path="/home">there is home!</Route>
+                <Route path="/about">there is about!</Route>
+              </Switch>
+            </div>
+            <List
+              todos={todos}
+              updateTodo={updateTodo}
+              deleteTodo={deleteTodo}
+            />
+          </main>
+          <Footer
             todos={todos}
-            updateTodo={updateTodo}
-            deleteTodo={deleteTodo}
+            deleteAllDoneTodo={this.deleteAllDoneTodo}
+            changeAllTodoStatus={this.changeAllTodoStatus}
           />
-        </main>
-        <Footer
-          todos={todos}
-          deleteAllDoneTodo={this.deleteAllDoneTodo}
-          changeAllTodoStatus={this.changeAllTodoStatus}
-        />
-      </div>
+        </div>
+      </Router>
     )
   }
 }
