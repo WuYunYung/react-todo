@@ -41,7 +41,7 @@ export default class Header extends Component {
   render() {
     return (
       <StyledHeader className="header">
-        <StyledInput type="text" placeholder="New todo..." onKeyUp={this.handleEnter} />
+        <StyledInput type="text" placeholder="请输入..." onKeyUp={this.handleEnter} />
       </StyledHeader>
     )
   }

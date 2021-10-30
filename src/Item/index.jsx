@@ -13,6 +13,9 @@ const Item = styled.li`
 `
 const Label = styled.label`
   flex-grow: 1;
+  display:flex;
+  align-items: center;
+
 `
 const TextBtn = styled.button`
   border: none;
