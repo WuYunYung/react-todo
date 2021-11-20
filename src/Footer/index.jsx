@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import propTypes from 'prop-types'
 import styled from 'styled-components'
+import store from '../redux/store'
 
 const MsFooter = styled.footer`
   border-top: 1px solid #ddd;
@@ -23,25 +23,22 @@ const MsButton = styled.button`
 
 export default class Footer extends Component {
 
-  static propTypes = {
-    todos: propTypes.array.isRequired,
-    deleteAllDoneTodo: propTypes.func.isRequired,
-    changeAllTodoStatus: propTypes.func.isRequired
-  }
-
   handleClick = () => {
     if (!window.confirm('请确认是否删除所有已完成todo？')) return
-    this.props.deleteAllDoneTodo()
+    store.dispatch({ type: 'todo/deleteAllDone' })
   }
 
   handleChange = (e) => {
     const { checked } = e.target
-    this.props.changeAllTodoStatus(checked)
+    store.dispatch({
+      type: 'todo/changeAllStatus',
+      data: { done: checked }
+    })
   }
 
   render() {
 
-    const { todos } = this.props
+    const todos = store.getState()
 
     const todos_count = todos.length
 

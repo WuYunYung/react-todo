@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import propTypes from 'prop-types'
 import styled from 'styled-components'
+import store from '../redux/store'
 
 const Item = styled.li`
   padding: 16px;
@@ -38,7 +39,6 @@ export default class index extends Component {
 
   static propTypes = {
     id: propTypes.string.isRequired,
-    updateTodo: propTypes.func.isRequired,
     done: propTypes.bool.isRequired
   }
 
@@ -56,14 +56,20 @@ export default class index extends Component {
 
   handleChange = e => {
     const { checked } = e.target
-    const { updateTodo, id } = this.props
-    updateTodo(id, checked)
+    const { id } = this.props
+    store.dispatch({
+      type: 'todo/update',
+      data: { id, done: checked }
+    })
   }
 
   handleClick = () => {
-    const { deleteTodo, id } = this.props
+    const { id } = this.props
     if (!window.confirm('是否确认删除?')) return
-    deleteTodo(id)
+    store.dispatch({
+      type: 'todo/delete',
+      data: { id }
+    })
   }
 
   render() {

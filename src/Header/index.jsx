@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import propTypes from 'prop-types'
 import styled from 'styled-components'
 import { nanoid } from 'nanoid'
+import store from '../redux/store';
 
 const StyledHeader = styled.header`
   box-shadow: 0 3px 3px #ddd;
@@ -21,19 +21,18 @@ const StyledInput = styled.input`
 
 export default class Header extends Component {
 
-  static propTypes = {
-    addTodo: propTypes.func.isRequired
-  }
-
-  handleEnter =  e => {
+  handleEnter = e => {
     const { keyCode, target } = e
     const { value } = target
     if (keyCode !== 13) return
     if (!value) return
-     this.props.addTodo({
-      id: nanoid(),
-      content: value,
-      done: false
+    store.dispatch({
+      type: 'todo/add',
+      data: {
+        id: nanoid(),
+        content: value,
+        done: false
+      }
     })
     target.value = ''
   }
