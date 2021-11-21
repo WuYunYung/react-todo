@@ -8,7 +8,7 @@ const MsFooter = styled.footer`
   display: flex;
   justify-content:space-between;
   align-items: center;
-  padding: 8px;
+  padding: 8px 16px;
   box-sizing: border-box;
   & > p{
     flex-grow:1;

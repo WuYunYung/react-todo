@@ -14,6 +14,15 @@ const StyledHeader = styled.header`
 
 export default class Header extends Component {
 
+  state = {
+    value: ''
+  }
+
+  handleChange = e => {
+    const { value } = e.target
+    this.setState({ value })
+  }
+
   handleEnter = e => {
     const { keyCode, target } = e
     const { value } = target
@@ -27,15 +36,19 @@ export default class Header extends Component {
         done: false
       }
     })
-    target.value = ''
+    this.setState({ value: '' })
   }
 
   render() {
+    const { value } = this.state
     return (
       <StyledHeader className="header">
         <Input
           bordered={false}
           placeholder="请输入..."
+          allowClear
+          value={value}
+          onChange={this.handleChange}
           onKeyUp={this.handleEnter} />
       </StyledHeader>
     )
