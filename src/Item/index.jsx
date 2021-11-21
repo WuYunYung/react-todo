@@ -1,38 +1,21 @@
 import React, { Component } from 'react'
 import propTypes from 'prop-types'
 import styled from 'styled-components'
+import { Button, Checkbox } from 'antd'
+import { DeleteOutlined } from '@ant-design/icons'
 import store from '../redux/store'
 
+
 const Item = styled.li`
-  padding: 16px;
+  height: 64px;
+  padding: 0 16px;
   display: flex;
+  justify-content:space-between;
   align-items: center;
   user-select: none;
   &:hover{
     background:#ddd2;
   } 
-`
-const Label = styled.label`
-  flex-grow: 1;
-  display:flex;
-  align-items: center;
-
-`
-const TextBtn = styled.button`
-  border: none;
-  border-radius: 50%;
-  background: #ddd;
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  &:before {
-    content: "\\1F5D9";
-    line-height:8px;
-    font-size:8px;
-  }
 `
 
 export default class index extends Component {
@@ -80,11 +63,16 @@ export default class index extends Component {
         onMouseEnter={this.handleMouse(true)}
         onMouseLeave={this.handleMouse(false)}
       >
-        <Label>
-          <input type="checkbox" onChange={this.handleChange} checked={done} />
-          <span>{content}</span>
-        </Label>
-        {show ? <TextBtn onClick={this.handleClick} /> : ''}
+        <Checkbox
+          onChange={this.handleChange}
+          checked={done}>
+          {content}
+        </Checkbox>
+        {show ? <Button
+          type="primary"
+          shape="circle"
+          icon={<DeleteOutlined />}
+          onClick={this.handleClick} /> : ''}
       </Item>
     )
   }

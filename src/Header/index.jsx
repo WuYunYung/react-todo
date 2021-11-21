@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { nanoid } from 'nanoid'
+import { Input } from 'antd'
 import store from '../redux/store';
 
 const StyledHeader = styled.header`
@@ -9,14 +10,6 @@ const StyledHeader = styled.header`
   padding: 16px;
   display: flex;
   align-items: center;
-`
-
-const StyledInput = styled.input`
-  flex-grow: 1;
-  display: block;
-  height: 100%;
-  border: none;
-  outline: none;
 `
 
 export default class Header extends Component {
@@ -40,11 +33,10 @@ export default class Header extends Component {
   render() {
     return (
       <StyledHeader className="header">
-        <StyledInput
-          type="text"
+        <Input
+          bordered={false}
           placeholder="请输入..."
-          onKeyUp={this.handleEnter}
-        />
+          onKeyUp={this.handleEnter} />
       </StyledHeader>
     )
   }

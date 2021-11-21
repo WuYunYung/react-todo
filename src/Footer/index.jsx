@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import store from '../redux/store'
+import { Button, Checkbox } from 'antd';
 
 const MsFooter = styled.footer`
   border-top: 1px solid #ddd;
   display: flex;
+  justify-content:space-between;
   align-items: center;
   padding: 8px;
   box-sizing: border-box;
@@ -51,9 +53,16 @@ export default class Footer extends Component {
 
     return (
       <MsFooter className="footer">
-        <input type="checkbox" onChange={this.handleChange} checked={isAllDone} />
-        <p>已完成{done_count}/总共{todos_count}</p>
-        <MsButton onClick={this.handleClick}>删除所有已完成</MsButton>
+        <Checkbox
+          onChange={this.handleChange}
+          checked={isAllDone}>
+          已完成{done_count}/总共{todos_count}
+        </Checkbox>
+        <Button
+          type="danger"
+          onClick={this.handleClick}>
+          删除所有已完成
+        </Button>
       </MsFooter>
     )
   }
