@@ -15,14 +15,6 @@ const MsFooter = styled.footer`
   }
 `
 
-const MsButton = styled.button`
-  background: #f00;
-  border:none;
-  border-radius:5px;
-  color:#fff;
-  padding:4px 8px;
-`
-
 export default class Footer extends Component {
 
   handleClick = () => {
