@@ -69,7 +69,7 @@ export default class index extends Component {
           {content}
         </Checkbox>
         {show ? <Button
-          type="primary"
+          type="link"
           shape="circle"
           icon={<DeleteOutlined />}
           onClick={this.handleClick} /> : ''}
