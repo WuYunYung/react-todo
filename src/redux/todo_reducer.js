@@ -1,22 +1,30 @@
+import {
+  TODO_ADD,
+  TODO_UPDATE,
+  TODO_DELETE,
+  TODO_DELETE_ALL_DONE,
+  TODO_CHANGE_ALL_STATUS
+} from './constant'
+
 const todos = []
 
 export default function todo_reducer(store = todos, { type, data }) {
   switch (type) {
-    case 'todo/add':
+    case TODO_ADD:
       return [...store, data]
-    case 'todo/update':
+    case TODO_UPDATE:
       return store.map(todo => {
         if (todo.id !== data.id) return todo
         return { ...todo, ...data }
       })
-    case 'todo/delete':
+    case TODO_DELETE:
       const { id } = data
       return store.filter(todo => {
         return todo.id !== id
       })
-    case 'todo/deleteAllDone':
+    case TODO_DELETE_ALL_DONE:
       return store.filter(todo => !todo.done)
-    case 'todo/changeAllStatus':
+    case TODO_CHANGE_ALL_STATUS:
       const { done } = data
       return store.map(todo => {
         return { ...todo, done }

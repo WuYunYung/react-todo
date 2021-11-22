@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import store from '../redux/store'
 import { Button, Checkbox } from 'antd';
+import { todoDeleteAllDoneAction, todoChangeAllStatus } from '../redux/todo_action'
 
 const MsFooter = styled.footer`
   border-top: 1px solid #ddd;
@@ -19,15 +20,12 @@ export default class Footer extends Component {
 
   handleClick = () => {
     if (!window.confirm('请确认是否删除所有已完成todo？')) return
-    store.dispatch({ type: 'todo/deleteAllDone' })
+    store.dispatch(todoDeleteAllDoneAction())
   }
 
   handleChange = (e) => {
     const { checked } = e.target
-    store.dispatch({
-      type: 'todo/changeAllStatus',
-      data: { done: checked }
-    })
+    store.dispatch(todoChangeAllStatus({ done: checked }))
   }
 
   render() {

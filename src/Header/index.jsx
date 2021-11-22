@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { nanoid } from 'nanoid'
 import { Input } from 'antd'
 import store from '../redux/store';
+import { todoAddAction } from '../redux/todo_action'
 
 const StyledHeader = styled.header`
   box-shadow: 0 3px 3px #ddd;
@@ -28,14 +29,11 @@ export default class Header extends Component {
     const { value } = target
     if (keyCode !== 13) return
     if (!value) return
-    store.dispatch({
-      type: 'todo/add',
-      data: {
-        id: nanoid(),
-        content: value,
-        done: false
-      }
-    })
+    store.dispatch(todoAddAction({
+      id: nanoid(),
+      content: value,
+      done: false
+    }))
     this.setState({ value: '' })
   }
 

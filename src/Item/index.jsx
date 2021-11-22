@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Button, Checkbox } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
 import store from '../redux/store'
+import { todoUpdateAction, todoDeleteAction } from '../redux/todo_action'
 
 
 const Item = styled.li`
@@ -40,19 +41,13 @@ export default class index extends Component {
   handleChange = e => {
     const { checked } = e.target
     const { id } = this.props
-    store.dispatch({
-      type: 'todo/update',
-      data: { id, done: checked }
-    })
+    store.dispatch(todoUpdateAction({ id, done: checked }))
   }
 
   handleClick = () => {
     const { id } = this.props
     if (!window.confirm('是否确认删除?')) return
-    store.dispatch({
-      type: 'todo/delete',
-      data: { id }
-    })
+    store.dispatch(todoDeleteAction({ id }))
   }
 
   render() {
